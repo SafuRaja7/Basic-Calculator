@@ -1,9 +1,9 @@
 import 'package:calculator_app/configs/app.dart';
 import 'package:calculator_app/configs/configs.dart';
+import 'package:calculator_app/utils/app_utils.dart';
 import 'package:calculator_app/widgets/buttons.dart';
 import 'package:calculator_app/widgets/theme_buttons.dart';
 import 'package:flutter/material.dart';
-import 'package:math_expressions/math_expressions.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,30 +14,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool isDark = false;
-  String input = '';
-  String output = '';
-  final List<String> buttons = [
-    'AC',
-    'DEL',
-    '%',
-    '/',
-    '9',
-    '8',
-    '7',
-    'x',
-    '6',
-    '5',
-    '4',
-    '-',
-    '3',
-    '2',
-    '1',
-    '+',
-    '0',
-    '.',
-    'ANS',
-    '=',
-  ];
+
   @override
   Widget build(BuildContext context) {
     App.init(context);
@@ -77,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.only(right: 20),
                       alignment: Alignment.centerRight,
                       child: Text(
-                        input,
+                        AppUtils.input,
                         style: TextStyle(
                           fontSize: 25,
                           color: isDark ? Colors.white : Colors.black,
@@ -89,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.only(right: 20),
                       alignment: Alignment.centerRight,
                       child: Text(
-                        output,
+                        AppUtils.output,
                         style: TextStyle(
                           fontSize: 40,
                           fontWeight: FontWeight.w700,
@@ -112,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: Space.all(0.5, 1),
                   color: isDark ? Colors.grey[900] : Colors.white,
                   child: GridView.builder(
-                    itemCount: buttons.length,
+                    itemCount: AppUtils.buttons.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 4,
@@ -122,52 +99,55 @@ class _HomeScreenState extends State<HomeScreen> {
                         return Buttons(
                           buttonTapped: () {
                             setState(() {
-                              input = '';
-                              output = '';
+                              AppUtils.input = '';
+                              AppUtils.output = '';
                             });
                           },
                           color: isDark ? Colors.grey[850]! : Colors.grey[50]!,
                           textColor: Colors.greenAccent,
-                          buttonText: buttons[index],
+                          buttonText: AppUtils.buttons[index],
                         );
                       } else if (index == 1) {
                         return Buttons(
                           buttonTapped: () {
                             setState(() {
-                              input = input.substring(0, input.length - 1);
+                              AppUtils.input = AppUtils.input
+                                  .substring(0, AppUtils.input.length - 1);
                             });
                           },
                           color: isDark ? Colors.grey[850]! : Colors.grey[50]!,
                           textColor: Colors.greenAccent,
-                          buttonText: buttons[index],
+                          buttonText: AppUtils.buttons[index],
                         );
-                      } else if (index == buttons.length - 1) {
+                      } else if (index == AppUtils.buttons.length - 1) {
                         return Buttons(
                           buttonTapped: () {
                             setState(() {
-                              equalPressed();
+                              AppUtils.equalPressed();
                             });
                           },
                           color: isDark ? Colors.grey[850]! : Colors.grey[50]!,
                           textColor: Colors.red,
-                          buttonText: buttons[index],
+                          buttonText: AppUtils.buttons[index],
                         );
                       } else {
                         return Buttons(
                           buttonTapped: () {
                             setState(
                               () {
-                                input = input + buttons[index];
+                                AppUtils.input =
+                                    AppUtils.input + AppUtils.buttons[index];
                               },
                             );
                           },
                           color: isDark ? Colors.grey[850]! : Colors.grey[50]!,
-                          textColor: isOperator(buttons[index])
-                              ? Colors.red
-                              : isDark
-                                  ? Colors.white
-                                  : Colors.black,
-                          buttonText: buttons[index],
+                          textColor:
+                              AppUtils.isOperator(AppUtils.buttons[index])
+                                  ? Colors.red
+                                  : isDark
+                                      ? Colors.white
+                                      : Colors.black,
+                          buttonText: AppUtils.buttons[index],
                         );
                       }
                     },
@@ -179,24 +159,5 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
-  }
-
-  bool isOperator(String x) {
-    if (x == '%' || x == '/' || x == 'x' || x == '+' || x == '-' || x == '=') {
-      return true;
-    }
-    return false;
-  }
-
-  void equalPressed() {
-    String finalInput = input;
-    Parser parser = Parser();
-    finalInput = finalInput.replaceAll('x', '*');
-    Expression exp = parser.parse(finalInput);
-
-    ContextModel cm = ContextModel();
-
-    double eval = exp.evaluate(EvaluationType.REAL, cm);
-    output = eval.toString();
   }
 }
