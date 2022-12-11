@@ -12,7 +12,7 @@ flutter packages get
 flutter run
 ```
 
-##Screenshots 
+## Screenshots 
 
 ![home](https://github.com/SafuRaja7/Basic-Calculator/blob/main/screenshots/Screenshot_1670776820.png)
 ![home_light](https://github.com/SafuRaja7/Basic-Calculator/blob/main/screenshots/Screenshot_1670776838.png)
