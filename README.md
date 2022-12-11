@@ -14,9 +14,10 @@ flutter run
 
 ## Screenshots 
 
-![home](https://github.com/SafuRaja7/Basic-Calculator/blob/main/screenshots/Screenshot_1670776820.png)
-![home_light](https://github.com/SafuRaja7/Basic-Calculator/blob/main/screenshots/Screenshot_1670776838.png)
-![home_dark](https://github.com/SafuRaja7/Basic-Calculator/blob/main/screenshots/Screenshot_1670776843.png)
+<img src="screenshots/Screenshot_1670776820.png" alt="" width="230">
+<img src="screenshots/Screenshot_1670776838.png" alt="" width="230">
+<img src="screenshots/Screenshot_1670776843.png" alt="" width="230">
+
 
 
 
