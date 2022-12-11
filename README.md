@@ -14,8 +14,8 @@ flutter run
 
 ## Screenshots 
 
-<img src="screenshots/Screenshot_1670776820.png" alt="" width="230">
-<img src="screenshots/Screenshot_1670776838.png" alt="" width="230">
+<img src="screenshots/Screenshot_1670776820.png" alt="" width="230">           <img src="screenshots/Screenshot_1670776838.png" alt="" width="230">
+
 <img src="screenshots/Screenshot_1670776843.png" alt="" width="230">
 
 
